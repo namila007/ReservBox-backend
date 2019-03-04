@@ -27,9 +27,9 @@ public class Hotel {
     private String address;
 
 
-    //ToDo make rooms bidirectional
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
-    private List<Room> rooms = new ArrayList<>();
+    private List<Contract> contracts = new ArrayList<>();
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -50,9 +50,9 @@ public class Hotel {
     }
 
 
-    public void setRooms(Room room) {
-        this.rooms.add(room);
-        room.setHotel(this);
+    public void setContracts(Contract contract) {
+        this.contracts.add(contract);
+        contract.setHotel(this);
     }
 
 }

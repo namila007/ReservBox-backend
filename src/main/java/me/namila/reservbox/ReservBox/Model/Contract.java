@@ -34,10 +34,10 @@ public class Contract {
 
     //not null foreign key with 1to1, join column mean this is the owner of the relationship
 //    @MapsId
-//    @Column(name = "hotel_id")
-//    @OneToOne
-//    @JoinColumn
-//    private Hotel hotel;
+
+    @ManyToOne()
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,12 +54,16 @@ public class Contract {
     }
 
     //for java functions
-    public Contract( Date startDate, Date endDate, List<Room> room )
+    public Contract(Date startDate, Date endDate, List<Room> room, Hotel hotel)
     {
         this.startDate = startDate;
         this.endDate = endDate;
         this.rooms = room;
-        room.forEach( x -> x.setContract( this ) );
+        room.forEach(x -> x.setContract(this));
+        this.hotel = hotel;
+        hotel.setContracts(this);
+        //room.forEach(x-> x.setHotel(hotel));
+
     }
 
     public void setRooms(Room room) {

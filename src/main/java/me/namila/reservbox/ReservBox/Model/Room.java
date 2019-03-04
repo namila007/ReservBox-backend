@@ -29,9 +29,9 @@ public class Room {
     @Column(name = "no_of_rooms")
     private int noOfRooms;
 
-    @JoinColumn(name = "hotel_id")
-    @ManyToOne
-    private Hotel hotel;
+//    @JoinColumn(name = "hotel_id")
+//    @ManyToOne
+//    private Hotel hotel;
 
     @ManyToOne
     @JoinColumn(name = "contract_id")
@@ -50,13 +50,14 @@ public class Room {
     protected Room() {
     }
 
-    public Room(String roomType, double roomRate, Hotel hotel, int noOfRooms, int maxAdults, Contract contract) {
+    public Room(String roomType, double roomRate, int noOfRooms, int maxAdults, Contract contract) {
         this.roomRate = roomRate;
         this.roomType = roomType;
         this.noOfRooms = noOfRooms;
-        this.hotel = hotel;
+        //this.hotel = hotel;
         this.maxAdults = maxAdults;
         this.contract = contract;
     }
+
 
 }
