@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import java.util.Map;
 
 @Component
 public class ContractService
@@ -27,15 +26,8 @@ public class ContractService
     public Contract addContract( Contract contract )
     {
 
-        hotelRepository.save( contract.getHotel() );
-        contract.getRooms().forEach( room -> roomRepository.save( room ) );
-        contract = contractRepository.save( contract );
-        //Hotel hotel = new Hotel(payload.get("name" ).toString(),payload.get("address" ).toString()  );
-        //        hotel = hotelRepository.save( hotel );
-        //            Contract newcontract = contractRepository.save(contract);
-        //            newcontract.setHotel( hotel );
-        //            newcontract.getRooms().forEach( room -> room.setContract( newcontract ) );
-        return contract;
+        Contract fcontract = contractRepository.save(contract);
+        return fcontract;
     }
 
 
@@ -54,9 +46,8 @@ public class ContractService
     }
 
     public Iterable<Room> getRooms(int id) {
-        Contract contract = contractRepository.findById(id).get();
-        Iterable<Room> rooms = contract.getRooms();
-        return rooms;
+        return contractRepository.findById( id ).get().getRooms();
+
     }
 
     public Room getRoom(int cid, int rid) {
@@ -64,10 +55,10 @@ public class ContractService
         return contract.getRooms().get(rid);
     }
 
-    public Room addNewRoom(int id, Map<String, Object> payload) {
-        Room room = new Room(payload.get("roomType").toString(), (Double) payload.get("roomRate"),
-                (int) payload.get("noOfRooms"), (int) payload.get("maxAdults"), this.getById(id));
-        return room;
+    public Room addNewRoom(int id, Room room) {
+        room.setContract(contractRepository.findById(id).get());
+        return roomRepository.save(room);
+
     }
 
     public boolean deleteAll() {

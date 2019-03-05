@@ -8,9 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
-@RestController(value = "/api/contract")
+@RestController
+@RequestMapping("/api/contract")
 public class ContractController
 {
 	@Autowired
@@ -21,7 +20,7 @@ public class ContractController
 	 * ADDING NEW CONTRACT
 	 */
 	// ToDo : add error handeling
-	@PostMapping()
+	@PostMapping
 	private ResponseEntity<?> createContract( @RequestBody Contract contract )
 	{
 
@@ -32,7 +31,7 @@ public class ContractController
 	 * @API GET
 	 * GET ALL CONTRACTS
 	 */
-	@GetMapping()
+	@GetMapping
 	private ResponseEntity<?> getAllContracts()
 	{
         return new ResponseEntity<Iterable<Contract>>(contractService.getAllContracts(), HttpStatus.OK);
@@ -63,7 +62,7 @@ public class ContractController
 	 * @API GET
 	 * GET ALL ROOMS FOR THE CONTRACT
 	 */
-	@GetMapping("/{id}/Rooms/")
+	@GetMapping("{id}/rooms/")
 	private ResponseEntity<?> getAllRoomsinContact( @PathVariable(value = "id") int id )
 	{
         return new ResponseEntity<Iterable<Room>>(contractService.getRooms(id), HttpStatus.OK);
@@ -73,7 +72,7 @@ public class ContractController
      * @API GET
      * GET ALL ROOMS IN A CONTRACT
      */
-    @GetMapping("/{id}/Rooms/{rid}")
+	@GetMapping("/{id}/rooms/{rid}")
     private ResponseEntity<?> getRoominContact(@PathVariable(value = "id") int id, @PathVariable(value = "rid") int rid) {
         return new ResponseEntity<Room>(contractService.getRoom(id, rid), HttpStatus.OK);
     }
@@ -82,16 +81,16 @@ public class ContractController
      * @API POST
      * PATCH Add a new room to contract
      */
-    @PostMapping("/{id}/Rooms/")
-    private ResponseEntity<?> addNewRoom(@PathVariable(value = "id") int id, @RequestBody Map<String, Object> payload) {
-        return new ResponseEntity<>(contractService.addNewRoom(id, payload), HttpStatus.OK);
+	@PostMapping("/{id}/rooms/")
+    private ResponseEntity<?> addNewRoom(@PathVariable(value = "id") int id, @RequestBody Room room) {
+        return new ResponseEntity<>(contractService.addNewRoom(id, room), HttpStatus.OK);
     }
 
     /**
      * @API DELETE
      * DELETE contract
      */
-    @DeleteMapping()
+	@DeleteMapping()
     private ResponseEntity<?> deleteAll() {
         return new ResponseEntity<>(contractService.deleteAll(), HttpStatus.OK);
     }

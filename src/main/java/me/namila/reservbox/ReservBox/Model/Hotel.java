@@ -1,11 +1,14 @@
 package me.namila.reservbox.ReservBox.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,8 +16,9 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "Hotel")
+@EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true) //adding auto updating time stamps
-public class Hotel {
+public class Hotel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,8 +31,9 @@ public class Hotel {
     private String address;
 
 
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
+    // ToDo fix onetoMany
+    @OneToMany(mappedBy = "hotel")
+    @JsonManagedReference
     private List<Contract> contracts = new ArrayList<>();
 
     @Column(nullable = false, updatable = false)
@@ -49,10 +54,9 @@ public class Hotel {
         this.address = address;
     }
 
-
-    public void setContracts(Contract contract) {
-        this.contracts.add(contract);
-        contract.setHotel(this);
+    public void addContract( Contract contract )
+    {
+        this.contracts.add( contract );
     }
 
 }
