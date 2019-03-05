@@ -8,6 +8,9 @@ import me.namila.reservbox.ReservBox.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Map;
 
 @Component
@@ -17,14 +20,24 @@ public class ContractService
     private ContractRepository contractRepository;
     @Autowired
     private HotelRepository hotelRepository;
+    final DateFormat format = new SimpleDateFormat( "YYYY-MM-DD", Locale.ENGLISH );
     @Autowired
-    private RoomRepository repository;
+    private RoomRepository roomRepository;
 
-    public Contract addContract(Contract contract) {
-        if (contract != null) {
-            return contractRepository.save(contract);
-        } else return null;
+    public Contract addContract( Contract contract )
+    {
+
+        hotelRepository.save( contract.getHotel() );
+        contract.getRooms().forEach( room -> roomRepository.save( room ) );
+        contract = contractRepository.save( contract );
+        //Hotel hotel = new Hotel(payload.get("name" ).toString(),payload.get("address" ).toString()  );
+        //        hotel = hotelRepository.save( hotel );
+        //            Contract newcontract = contractRepository.save(contract);
+        //            newcontract.setHotel( hotel );
+        //            newcontract.getRooms().forEach( room -> room.setContract( newcontract ) );
+        return contract;
     }
+
 
     public Iterable<Contract> getAllContracts() {
         return contractRepository.findAll();

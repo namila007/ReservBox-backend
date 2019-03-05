@@ -62,12 +62,35 @@ public class Contract {
         room.forEach(x -> x.setContract(this));
         this.hotel = hotel;
         hotel.setContracts(this);
-        //room.forEach(x-> x.setHotel(hotel));
 
+    }
+
+    public Contract( Date startDate, Date endDate, List<Room> room )
+    {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.rooms = room;
+        room.forEach( x -> x.setContract( this ) );
     }
 
     public void setRooms(Room room) {
         this.rooms.add(room);
         room.setContract(this);
+    }
+
+    public List<Room> getRooms()
+    {
+        return rooms;
+    }
+
+    public Hotel getHotel()
+    {
+        return hotel;
+    }
+
+    public void setHotel( Hotel hotel )
+    {
+        this.hotel = hotel;
+        hotel.setContracts( this );
     }
 }

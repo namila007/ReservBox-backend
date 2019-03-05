@@ -50,14 +50,26 @@ public class Room {
     protected Room() {
     }
 
+    public Room( String roomType, double roomRate, int noOfRooms, int maxAdults )
+    {
+        this.roomRate = roomRate;
+        this.roomType = roomType;
+        this.noOfRooms = noOfRooms;
+        this.maxAdults = maxAdults;
+    }
+
     public Room(String roomType, double roomRate, int noOfRooms, int maxAdults, Contract contract) {
         this.roomRate = roomRate;
         this.roomType = roomType;
         this.noOfRooms = noOfRooms;
-        //this.hotel = hotel;
         this.maxAdults = maxAdults;
         this.contract = contract;
+
     }
 
+    public void setContract( Contract contract )
+    {
+        this.contract = contract;
+    }
 
 }
