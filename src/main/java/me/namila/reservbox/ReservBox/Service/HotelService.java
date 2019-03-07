@@ -23,4 +23,6 @@ public interface HotelService
 	boolean deleteAll();
 
 	Hotel add( Hotel hotel );
+
+	Hotel addContracts( int id, Contract contract );
 }
