@@ -33,7 +33,6 @@ public class RoomController
 	@GetMapping
 	private ResponseEntity<?> get()
 	{
-		System.out.println( "ddddd" );
 		return new ResponseEntity<Iterable<Room>>( roomService.getAll(), HttpStatus.OK );
 	}
 
