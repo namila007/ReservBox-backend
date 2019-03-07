@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/contract")
 public class ContractController
 {
-	@Autowired
-    private ContractService contractService;
+
+	private ContractService contractService;
 
 	/**
 	 * @API POST
@@ -21,10 +21,10 @@ public class ContractController
 	 */
 	// ToDo : add error handeling
 	@PostMapping
-	private ResponseEntity<?> createContract( @RequestBody Contract contract )
+	private ResponseEntity<?> create( @RequestBody Contract contract )
 	{
 
-        return new ResponseEntity<Contract>(contractService.addContract(contract), HttpStatus.CREATED);
+		return new ResponseEntity<Contract>( contractService.addContract( contract ), HttpStatus.CREATED );
 	}
 
 	/**
@@ -32,9 +32,9 @@ public class ContractController
 	 * GET ALL CONTRACTS
 	 */
 	@GetMapping
-	private ResponseEntity<?> getAllContracts()
+	private ResponseEntity<?> get()
 	{
-        return new ResponseEntity<Iterable<Contract>>(contractService.getAllContracts(), HttpStatus.OK);
+		return new ResponseEntity<Iterable<Contract>>( contractService.getAllContracts(), HttpStatus.OK );
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class ContractController
 	@GetMapping("/{id}")
 	private ResponseEntity<?> getContract( @PathVariable(value = "id") int id )
 	{
-        return new ResponseEntity<>(contractService.getById(id), HttpStatus.OK);
+		return new ResponseEntity<>( contractService.getById( id ), HttpStatus.OK );
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class ContractController
 	private ResponseEntity<?> deleteContract( @PathVariable(value = "id") int id )
 	{
 
-        return new ResponseEntity<Contract>(contractService.deleteById(id), HttpStatus.OK);
+		return new ResponseEntity<Contract>( contractService.deleteById( id ), HttpStatus.OK );
 	}
 
 	/**
@@ -65,35 +65,53 @@ public class ContractController
 	@GetMapping("{id}/rooms/")
 	private ResponseEntity<?> getAllRoomsinContact( @PathVariable(value = "id") int id )
 	{
-        return new ResponseEntity<Iterable<Room>>(contractService.getRooms(id), HttpStatus.OK);
-    }
+		return new ResponseEntity<Iterable<Room>>( contractService.getRooms( id ), HttpStatus.OK );
+	}
 
-    /**
-     * @API GET
-     * GET ALL ROOMS IN A CONTRACT
-     */
+	/**
+	 * @API GET
+	 * GET ALL ROOMS IN A CONTRACT
+	 */
 	@GetMapping("/{id}/rooms/{rid}")
-    private ResponseEntity<?> getRoominContact(@PathVariable(value = "id") int id, @PathVariable(value = "rid") int rid) {
-        return new ResponseEntity<Room>(contractService.getRoom(id, rid), HttpStatus.OK);
-    }
+	private ResponseEntity<?> getRoominContact( @PathVariable(value = "id") int id,
+			@PathVariable(value = "rid") int rid )
+	{
+		return new ResponseEntity<Room>( contractService.getRoom( id, rid ), HttpStatus.OK );
+	}
 
-    /**
-     * @API POST
-     * PATCH Add a new room to contract
-     */
+	/**
+	 * @API POST
+	 * PATCH Add a new room to contract
+	 */
 	@PostMapping("/{id}/rooms/")
-    private ResponseEntity<?> addNewRoom(@PathVariable(value = "id") int id, @RequestBody Room room) {
-        return new ResponseEntity<>(contractService.addNewRoom(id, room), HttpStatus.OK);
-    }
+	private ResponseEntity<?> addNewRoom( @PathVariable(value = "id") int id, @RequestBody Room room )
+	{
+		return new ResponseEntity<>( contractService.addNewRoom( id, room ), HttpStatus.OK );
+	}
 
-    /**
-     * @API DELETE
-     * DELETE contract
-     */
+	/**
+	 * @API DELETE
+	 * DELETE contract
+	 */
 	@DeleteMapping()
-    private ResponseEntity<?> deleteAll() {
-        return new ResponseEntity<>(contractService.deleteAll(), HttpStatus.OK);
-    }
+	private ResponseEntity<?> deleteAll()
+	{
+		return new ResponseEntity<>( contractService.deleteAll(), HttpStatus.OK );
+	}
 
+	/**
+	 * @API GET
+	 * GET Hotel
+	 */
+	@GetMapping("/{id}/hotel")
+	private ResponseEntity<?> getHotel( @PathVariable(value = "id") int id )
+	{
+		return new ResponseEntity<>( contractService.getHotel( id ), HttpStatus.OK );
+	}
 
+	@Autowired
+	public void setContractService( ContractService contractService )
+	{
+		this.contractService = contractService;
+	}
 }
