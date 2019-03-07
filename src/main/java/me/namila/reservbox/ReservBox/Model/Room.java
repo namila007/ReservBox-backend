@@ -1,18 +1,22 @@
 package me.namila.reservbox.ReservBox.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "Room")
+@EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true) //adding auto updating time stamps
-public class Room {
+public class Room implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -29,10 +33,7 @@ public class Room {
     @Column(name = "no_of_rooms")
     private int noOfRooms;
 
-    @JoinColumn(name = "hotel_id")
-    @ManyToOne
-    private Hotel hotel;
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "contract_id")
     private Contract contract;
@@ -50,12 +51,18 @@ public class Room {
     protected Room() {
     }
 
-    public Room(String roomType, double roomRate, Hotel hotel, int noOfRooms, int maxAdults, Contract contract) {
+
+    public Room(String roomType, double roomRate, int noOfRooms, int maxAdults, Contract contract) {
         this.roomRate = roomRate;
         this.roomType = roomType;
         this.noOfRooms = noOfRooms;
-        this.hotel = hotel;
         this.maxAdults = maxAdults;
+        this.contract = contract;
+
+    }
+
+    public void setContract( Contract contract )
+    {
         this.contract = contract;
     }
 
