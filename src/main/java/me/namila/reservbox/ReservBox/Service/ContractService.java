@@ -46,10 +46,8 @@ public class ContractService
     }
 
     public Iterable<Room> getRooms(int id) {
-        Contract contract = contractRepository.findById(id).get();
-        Iterable<Room> rooms = contract.getRooms();
-        System.out.println(rooms.toString());
-        return rooms;
+        return contractRepository.findById( id ).get().getRooms();
+
     }
 
     public Room getRoom(int cid, int rid) {

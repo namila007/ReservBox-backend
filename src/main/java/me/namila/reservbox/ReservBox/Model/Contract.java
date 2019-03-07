@@ -1,5 +1,6 @@
 package me.namila.reservbox.ReservBox.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -45,8 +46,8 @@ public class Contract implements Serializable {
 //    @MapsId
 
     @JsonProperty("hotel")
-    @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "contract", fetch = FetchType.LAZY)
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
@@ -72,6 +73,7 @@ public class Contract implements Serializable {
         this.rooms = room;
         room.forEach(x -> x.setContract(this));
         this.hotel = hotel;
+        this.hotel.addContract( this );
 
     }
 
@@ -103,6 +105,6 @@ public class Contract implements Serializable {
     public void setHotel( Hotel hotel )
     {
         this.hotel = hotel;
-        hotel.setContract(this);
+        hotel.addContract( this );
     }
 }
