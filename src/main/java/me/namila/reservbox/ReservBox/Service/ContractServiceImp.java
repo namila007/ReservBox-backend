@@ -4,6 +4,7 @@ import me.namila.reservbox.ReservBox.Model.Contract;
 import me.namila.reservbox.ReservBox.Model.Hotel;
 import me.namila.reservbox.ReservBox.Model.Room;
 import me.namila.reservbox.ReservBox.Repository.ContractRepository;
+import me.namila.reservbox.ReservBox.Repository.HotelRepository;
 import me.namila.reservbox.ReservBox.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,22 @@ public class ContractServiceImp implements ContractService
 	private ContractRepository contractRepository;
 	@Autowired
 	private RoomRepository roomRepository;
+	@Autowired
+	private HotelRepository hotelRepository;
 
 	public Contract addContract( Contract contract )
 	{
+		if ( contract.getHotel().getId() != 0 )
+		{
+			//when hotel id is sent.this is working
+			Hotel hotel = hotelRepository.findById( contract.getHotel().getId() ).get();
+			hotel.addContract( contract );
+			contract.setHotel( hotel );
+			hotelRepository.save( hotel );
+		}
+		//else new hotel is added
+		return contractRepository.save( contract );
 
-		Contract fcontract = contractRepository.save( contract );
-		return fcontract;
 	}
 
 	public Iterable<Contract> getAllContracts()

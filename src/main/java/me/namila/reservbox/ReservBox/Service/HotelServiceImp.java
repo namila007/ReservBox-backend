@@ -18,6 +18,7 @@ public class HotelServiceImp implements HotelService
 	@Override
 	public Contract addContract( Contract contract )
 	{
+
 		return null;
 	}
 
@@ -69,4 +70,11 @@ public class HotelServiceImp implements HotelService
 		return hotelRepository.save( hotel );
 	}
 
+	@Override
+	public Hotel addContracts( int id, Contract contract )
+	{
+		Hotel hotel = hotelRepository.findById( id ).get();
+		hotel.addContract( contract );
+		return hotelRepository.save( hotel );
+	}
 }

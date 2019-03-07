@@ -83,13 +83,27 @@ public class HotelController
 
 	/**
 	 * @API GET
-	 * GET Hotel
+	 * GET Contracts
 	 */
 	@GetMapping("/{id}/contract")
 	private ResponseEntity<?> getContract( @PathVariable(value = "id") int id )
 	{
 		return new ResponseEntity<List<Contract>>( hotelService.getContracts( id ), HttpStatus.OK );
 	}
+
+	//THIS IS USELESS
+
+	/**
+	 * @API POST
+	 * POST Contracts
+	 */
+	@PostMapping("/{id}/contract")
+	private ResponseEntity<?> addContract( @PathVariable(value = "id") int id, @RequestBody Contract contract )
+	{
+		return new ResponseEntity<Hotel>( hotelService.addContracts( id, contract ), HttpStatus.OK );
+	}
+
+
 
 	@Autowired
 	public void setHotelService( HotelService hotelService )
