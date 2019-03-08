@@ -24,7 +24,7 @@ import java.util.List;
 public class Contract implements Serializable {
     //Auto generated primary key
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @JsonProperty("startDate")
@@ -75,14 +75,6 @@ public class Contract implements Serializable {
         this.hotel = hotel;
         this.hotel.addContract( this );
 
-    }
-
-    public Contract( Date startDate, Date endDate, List<Room> room )
-    {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.rooms = room;
-        room.forEach( x -> x.setContract( this ) );
     }
 
     public void setRooms(List<Room> rooms) {
