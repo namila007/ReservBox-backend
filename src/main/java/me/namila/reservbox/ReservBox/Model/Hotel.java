@@ -15,7 +15,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "Hotel")
+@Table(name = "hotel")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = { "createdAt", "updatedAt", "hibernateLazyInitializer", "handler" }, allowGetters = true)
 //adding auto updating time stamps
