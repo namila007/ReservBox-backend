@@ -84,6 +84,8 @@ public class ContractServiceImp implements ContractService
 	@Override
 	public Hotel getHotel( int id )
 	{
-		return contractRepository.findById( id ).get().getHotel();
+		Hotel hotel = contractRepository.findById( id ).get().getHotel();
+		hotel.setContracts( null );
+		return hotel;
 	}
 }
