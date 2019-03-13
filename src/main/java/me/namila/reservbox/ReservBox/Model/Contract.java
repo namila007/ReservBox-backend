@@ -8,7 +8,6 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,12 +28,12 @@ public class Contract implements Serializable {
 
     @JsonProperty("startDate")
     @Column(name = "start_date")
-    @DateTimeFormat
+    @Temporal(TemporalType.DATE)
     private Date startDate;
 
     @JsonProperty("endDate")
     @Column(name = "end_date")
-    @DateTimeFormat
+    @Temporal(TemporalType.DATE)
     private Date endDate;
 
     @JsonProperty("rooms")

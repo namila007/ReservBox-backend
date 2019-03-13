@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Room")
+@Table(name = "room")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true) //adding auto updating time stamps
 public class Room implements Serializable {
