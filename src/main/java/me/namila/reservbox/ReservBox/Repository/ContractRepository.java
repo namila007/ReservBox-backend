@@ -16,4 +16,9 @@ public interface ContractRepository extends CrudRepository<Contract, Integer>
 	List<Object[]> getSearch( @Param("adults") int adults,
                              @Param("startDate") Date startDate,
                              @Param("endDate") Date endDate);
+
+	@Query("SELECT  c from  Contract c where c.startDate <= :startDate and c.endDate >= :endDate")
+	List<Contract> getContractsByStartDateBetweenAndEndDate(
+			@Param("startDate") Date startDate,
+			@Param("endDate") Date endDate );
 }
