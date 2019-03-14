@@ -4,16 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SearchResult {
-
-    private String hotelName;
-    private String roomType;
-    private double roomRate;
-
-
+public class SearchRequest
+{
+	private Date startDate;
+	private Date endDate;
+	private List<RoomRequest> roomRequestList;
 }
 

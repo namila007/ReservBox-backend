@@ -4,16 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SearchResult {
-
-    private String hotelName;
-    private String roomType;
-    private double roomRate;
-
-
+public class RoomRequest
+{
+	private int rooms;
+	private int maxAdults;
 }
-
