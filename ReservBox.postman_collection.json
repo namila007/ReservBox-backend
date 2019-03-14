@@ -1,0 +1,438 @@
+{
+  "info": {
+    "_postman_id": "a8c20f1e-8355-b03b-8964-c1dbbb9d6414",
+    "name": "ReservBox",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "contract",
+      "item": [
+        {
+          "name": "Add Contract",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"2019-03-01\",\n  \"endDate\": \"2019-03-04\",\n  \"hotel\": {\n    \"address\": \"erertertert\",\n    \"name\": \"Queens\"\n  },\n  \"rooms\": [\n    {\n      \"maxAdults\": \"5\",\n      \"roomRate\": 23,\n      \"noOfRooms\": 22,\n      \"roomType\": \"sea side\"\n    },\n    {\n      \"maxAdults\": \"32\",\n      \"roomRate\": 3,\n      \"noOfRooms\": 2234,\n      \"roomType\": \"side\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/contract",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "contract"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Contract",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/contract/1/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "contract",
+                "1",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/contract/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "contract",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add contract by hotel id",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"2019-03-01\",\n  \"endDate\": \"2019-03-04\",\n  \"hotel\": {\n    \"id\":1\n  },\n  \"rooms\": [\n    {\n      \"maxAdults\": \"5\",\n      \"roomRate\": 23,\n      \"noOfRooms\": 22,\n      \"roomType\": \"sea side\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/contract",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "contract"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Rooms in Contract",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/contract/1/rooms/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "contract",
+                "1",
+                "rooms",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "http://localhost:8080/api/contract/1/rooms/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n      \"maxAdults\": \"5\",\n      \"roomRate\": 23,\n      \"noOfRooms\": 22,\n      \"roomType\": \"AAAA\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/contract/1/rooms/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "contract",
+                "1",
+                "rooms",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get hotel",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/contract/1/hotel",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "contract",
+                "1",
+                "hotel"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "hotel",
+      "item": [
+        {
+          "name": "Get ALL",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/hotel",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "hotel"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get hotel",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/hotel/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "hotel",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Hotel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Qfs\",\n    \"address\": \"ff\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/hotel/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "hotel",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get contract",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/hotel/2/contract",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "hotel",
+                "2",
+                "contract"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "room",
+      "item": [
+        {
+          "name": "Get all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/room/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "room",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get room",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/room/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "room",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add room",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"roomType\": \"SAW\",\n    \"maxAdults\": 5,\n    \"roomRate\": 23,\n    \"noOfRooms\": 22,\n    \"contract\" :{\n    \t\"id\":2\n    }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/room/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "room",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Room list Search",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"startDate\":\"2019-04-01\",\n\t\"endDate\":\"2019-04-07\",\n\t\"roomRequestList\": [\n\t\t{\n\t\t\t\"rooms\": 10,\n\t\t\t\"maxAdults\": 5\n\t\t}\n\t\t]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/search",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "search"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
