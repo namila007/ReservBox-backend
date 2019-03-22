@@ -17,6 +17,17 @@ public class FindRoomServiceImp implements FindRoomsService
 	private ContractRepository contractRepository;
 	private List<SearchResult> searchResults = null;
 
+	/**
+	 * filtering the rooms with available criteria
+	 *
+	 * @param noOfRooms
+	 * @param noOfAdults
+	 * @param startDate
+	 * @param endDate
+	 * @return Search Result list
+	 */
+	// *
+	//
 	public List<SearchResult> findRooms( int noOfRooms, int noOfAdults, Date startDate, Date endDate )
 	{
 		List<Contract> contracts = contractRepository.getContractsByStartDateBetweenAndEndDate( startDate, endDate );
@@ -25,6 +36,11 @@ public class FindRoomServiceImp implements FindRoomsService
 		return sr;
 	}
 
+	/**
+	 *
+	 * @param searchRequest
+	 * @return
+	 */
 	public List<SearchResult> findRoomsbyList( SearchRequest searchRequest )
 	{
 		List<Contract> contracts = contractRepository
@@ -34,7 +50,13 @@ public class FindRoomServiceImp implements FindRoomsService
 		return sr;
 	}
 
-
+	/**
+	 *
+	 * @param contracts
+	 * @param noOfRooms
+	 * @param noOfAdults
+	 * @return
+	 */
 	private List<SearchResult> filterRooms( List<Contract> contracts, int noOfRooms, int noOfAdults )
 	{
 		this.searchResults = new ArrayList<>();
@@ -60,6 +82,10 @@ public class FindRoomServiceImp implements FindRoomsService
 		return searchResults;
 	}
 
+	/**
+	 * This function get the rooms and add the relevent to the response model Search Results
+	 * @param contract
+	 */
 	private void createObjects( Contract contract )
 	{
 		Iterator roomIterator = contract.getRooms().listIterator();
@@ -74,6 +100,11 @@ public class FindRoomServiceImp implements FindRoomsService
 		}
 	}
 
+	/**
+	 *
+	 * @param searchRequest
+	 * @return
+	 */
 	private int[] filterRequest( SearchRequest searchRequest )
 	{
 		Iterator<RoomRequest> roomRequestIterator = searchRequest.getRoomRequestList().listIterator();
